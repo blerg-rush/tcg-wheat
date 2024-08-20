@@ -1,0 +1,49 @@
+[project]
+name = "tcg-wheat"
+description = "Filter your collection for cards that are worth keeping"
+dynamic = ["version"]
+classifiers = [
+  "Private :: Do Not Upload",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = [
+  "aiohttp",
+  "peewee",
+  "click",
+  "pydantic-settings",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pip-tools",
+]
+test = [
+  "mypy",
+  "pytest",
+  "pytest-aio",
+  "ruff",
+]
+
+[tool.mypy]
+mypy_path = "src/"
+explicit_package_bases = true
+ignore_missing_imports = true
+plugins = [
+  "pydantic.mypy",
+]
+
+[tool.ruff]
+line-length = 119
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["E501", "UP038"]
+
+[tool.ruff.format]
+docstring-code-format = true
+quote-style = "single"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
